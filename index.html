@@ -8,9 +8,30 @@
   </head>
   <body>
     <div class="container-main">
-      <div class="container-header"></div>
+      <div class="container-header">
+        <button id="outerAddBtn" class="addBtn">add</button>
+      </div>
       <div id="books" class="container-books"></div>
       <div class="container-footer"></div>
+
+      <form class="notShow">
+        <div>
+          Add a book! <span><button type="button" id="xBtn">x</button></span>
+        </div>
+        <div class="input">
+          <label for="title"><input type="text" id="title" /></label>
+        </div>
+        <div class="input">
+          <label for="author"><input type="text" id="author" /></label>
+        </div>
+        <div class="input">
+          <label for="pages"><input type="number" id="pages" /></label>
+        </div>
+        <div class="input">
+          <label for="read">read?</label><input type="checkbox" id="read" />
+        </div>
+        <div><button type="button" id="innerAddBtn">add</button></div>
+      </form>
     </div>
   </body>
 </html>
