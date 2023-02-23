@@ -2,6 +2,7 @@ const library = [];
 const content = document.getElementById("books");
 const outerAddBtn = document.getElementById("outerAddBtn");
 const innerAddBtn = document.getElementById("innerAddBtn");
+const form = document.querySelector("form");
 
 class Book {
   constructor(title, author, pages, read) {
@@ -31,7 +32,7 @@ function showLibrary() {
 }
 
 outerAddBtn.addEventListener("click", () => {
-  document.querySelector("form").removeAttribute("class");
+  form.removeAttribute("class");
 });
 showLibrary();
 
@@ -41,9 +42,20 @@ innerAddBtn.addEventListener("click", () => {
   const pages = document.getElementById("pages");
   const read = document.getElementById("read");
 
-  content.innerHTML += `<div class="card"><p> Title: ${
-    title.value
-  }</p>  <p>Author: ${author.value}</p>  <p>Pages:${
-    pages.value
-  } </p> <p> Read: ${read.checked ? "Read" : "Unread"}</p> <div>`;
+  if (title.value === "" || title.value == null) {
+    document.getElementById(
+      "errorMsg"
+    ).innerHTML = `Please enter the title of the book you wish to add`;
+  } else {
+    if (author.value === "" || author.value == null) {
+      author.value = "N/A";
+    }
+    content.innerHTML += `
+    <div class="card">
+    <p> Title: ${title.value}</p>  
+    <p>Author: ${author.value}</p>  
+    <p>Pages:${pages.value} </p> 
+    <p> Read: ${read.checked ? "Read" : "Unread"}</p> 
+    <div>`;
+  }
 });
