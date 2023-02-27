@@ -2,7 +2,8 @@ const library = [];
 const content = document.getElementById("books");
 const outerAddBtn = document.getElementById("outerAddBtn");
 const innerAddBtn = document.getElementById("innerAddBtn");
-const form = document.querySelector("form");
+const xBtn = document.getElementById("xBtn");
+const formWrapper = document.getElementById("form-wrapper");
 
 class Book {
   constructor(title, author, pages, read) {
@@ -17,12 +18,13 @@ function addBook(book) {
   library.push(book);
 }
 
-addBook(new Book("yo", "yoyo", "123", true));
-addBook(new Book("ja", "jaja", "456", false));
-
 function showLibrary() {
+  if (library.length === 0) {
+    content.innerHTML = `<div class="card">Add a Book!</div>`;
+  }
   library.forEach((e) => {
     content.innerHTML += `<div class="card"> 
+    <p> Book ${library.length}</p>  
     <p> title: ${e.title}</p>
       <p> author: ${e.author}</p>
       <p> pages: ${e.pages}</p>
@@ -31,10 +33,20 @@ function showLibrary() {
   });
 }
 
+function closeForm() {
+  formWrapper.setAttribute("class", "form-wrapper formClose");
+}
+function emptyLibrary() {
+  content.innerHTML = "";
+}
+
 outerAddBtn.addEventListener("click", () => {
-  form.removeAttribute("class");
+  formWrapper.setAttribute("class", "form-wrapper formShow");
 });
-showLibrary();
+
+xBtn.addEventListener("click", () => {
+  closeForm();
+});
 
 innerAddBtn.addEventListener("click", () => {
   const title = document.getElementById("title");
@@ -50,12 +62,17 @@ innerAddBtn.addEventListener("click", () => {
     if (author.value === "" || author.value == null) {
       author.value = "N/A";
     }
-    content.innerHTML += `
-    <div class="card">
-    <p> Title: ${title.value}</p>  
-    <p>Author: ${author.value}</p>  
-    <p>Pages:${pages.value} </p> 
-    <p> Read: ${read.checked ? "Read" : "Unread"}</p> 
-    <div>`;
+
+    addBook(new Book(title.value, author.value, pages.value, read.checked));
+    emptyLibrary();
+    showLibrary();
+    author.value = "";
+    title.value = "";
+    pages.value = "";
+    read.checked = false;
+    closeForm();
+    document.getElementById("errorMsg").innerHTML = ``;
   }
 });
+
+showLibrary();

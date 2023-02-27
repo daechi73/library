@@ -17,26 +17,35 @@
       <div id="books" class="container-books"></div>
       <div class="container-footer">Copyright © JTech 2023</div>
 
-      <form class="notShow">
-        <div>
-          Add a book! <span><button type="button" id="xBtn">x</button></span>
-        </div>
-        <div class="input">
-          <label for="title"><input type="text" id="title" /></label>
-        </div>
-        <div class="input">
-          <label for="author"><input type="text" id="author" /></label>
-        </div>
-        <div class="input">
-          <label for="pages"><input type="number" id="pages" /></label>
-        </div>
-        <div class="input">
-          <label for="read">read?</label
-          ><input type="checkbox" id="read" required />
-        </div>
-        <div><button type="button" id="innerAddBtn">add</button></div>
-        <div class="errorMsg" id="errorMsg"></div>
-      </form>
+      <div id="form-wrapper" class="form-wrapper formClose">
+        <form id="form" class="form">
+          <div class="container-form">
+            <p>
+              Add a book!
+              <span><button type="button" id="xBtn">x</button></span>
+            </p>
+            <div class="input">
+              <label for="title">Title: </label>
+            </div>
+            <div class="input"><input type="text" id="title" /></div>
+            <div class="input">
+              <label for="author">Author: </label>
+            </div>
+            <div class="input"><input type="text" id="author" /></div>
+            <div class="input">
+              <label for="pages">Pages: </label>
+            </div>
+            <div class="input"><input type="number" id="pages" /></div>
+            <div class="input">
+              <label for="read">read? </label
+              ><input type="checkbox" id="read" />
+            </div>
+
+            <div><button type="button" id="innerAddBtn">add</button></div>
+            <div class="errorMsg" id="errorMsg"></div>
+          </div>
+        </form>
+      </div>
     </div>
   </body>
 </html>
