@@ -20,16 +20,26 @@ function addBook(book) {
 
 function showLibrary() {
   if (library.length === 0) {
-    content.innerHTML = `<div class="card">Add a Book!</div>`;
+    content.innerHTML = `<div class="card">Empty Library</div>`;
   }
-  library.forEach((e) => {
-    content.innerHTML += `<div class="card"> 
-    <p> Book ${library.length}</p>  
+  let dataKey = 0;
+  library.forEach((e, i) => {
+    content.innerHTML += `<div class="card" >
+    <p> Book ${i + 1} 
+       <span>
+          <button class='delBtn' id='delBtn${i}' data-key="${dataKey}" 
+            onClick='deleteBook(this.dataset.keys)'>
+              x
+          </button>
+       </span>
+    </p>
     <p> title: ${e.title}</p>
       <p> author: ${e.author}</p>
       <p> pages: ${e.pages}</p>
-      <p> read: ${e.read}
+      <p> read: ${e.read ? "read" : "Not Read"}
     </div>`;
+    // eslint-disable-next-line no-plusplus
+    dataKey++;
   });
 }
 
@@ -38,6 +48,12 @@ function closeForm() {
 }
 function emptyLibrary() {
   content.innerHTML = "";
+}
+// eslint-disable-next-line no-unused-vars
+function deleteBook(key) {
+  library.splice(key, 1);
+  emptyLibrary();
+  showLibrary();
 }
 
 outerAddBtn.addEventListener("click", () => {
@@ -74,5 +90,12 @@ innerAddBtn.addEventListener("click", () => {
     document.getElementById("errorMsg").innerHTML = ``;
   }
 });
+
+// addBook(new Book("jason", "", "", false));
+// addBook(new Book("mamoa", "", "", false));
+// addBook(new Book("smells", "", "", false));
+// addBook(new Book("nice", "", "", false));
+// addBook(new Book("weird", "", "", false));
+// addBook(new Book("jaja", "", "", false));
 
 showLibrary();

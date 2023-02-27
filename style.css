@@ -35,6 +35,7 @@ body,
   background-color: orange;
   padding: 10px;
   justify-content: center;
+  align-items: center;
 }
 
 .card {
