@@ -69,16 +69,22 @@ innerAddBtn.addEventListener("click", () => {
   const author = document.getElementById("author");
   const pages = document.getElementById("pages");
   const read = document.getElementById("read");
+  const errorMsg = document.getElementById("errorMsg");
+  let submit = true;
 
   if (title.value === "" || title.value == null) {
-    document.getElementById(
-      "errorMsg"
-    ).innerHTML = `Please enter the title of the book you wish to add`;
-  } else {
-    if (author.value === "" || author.value == null) {
-      author.value = "N/A";
-    }
-
+    errorMsg.innerHTML = `Please enter the title of the book you wish to add`;
+    submit = false;
+  }
+  if (author.value === "" || author.value == null) {
+    errorMsg.innerHTML = `Please enter the author of the book`;
+    submit = false;
+  }
+  if (pages.value === "" || pages.value == null) {
+    errorMsg.innerHTML = "Please enter the number of pages";
+    submit = false;
+  }
+  if (submit) {
     addBook(new Book(title.value, author.value, pages.value, read.checked));
     emptyLibrary();
     showLibrary();
