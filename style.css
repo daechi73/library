@@ -121,3 +121,6 @@ input {
 .container-form > div {
   font-size: 20px;
 }
+.errorMsg {
+  color: red;
+}
